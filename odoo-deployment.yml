@@ -5,7 +5,7 @@ metadata:
   labels:
     app: odoo
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: odoo
@@ -15,21 +15,21 @@ spec:
         app: odoo
     spec:
       containers:
-      - name: odoo
-        image: odoo:latest
-        ports:
-        - containerPort: 8069
-        env:
-        - name: HOST
-          value: postgres
-        - name: USER
-          value: admin
-        - name: PASSWORD
-          value: root
+        - name: odoo
+          image: odoo:latest
+          ports:
+            - containerPort: 8069
+          env:
+            - name: HOST
+              value: postgres
+            - name: USER
+              value: admin
+            - name: PASSWORD
+              value: root
 ---
 apiVersion: v1
 kind: Service
-metadata:    
+metadata:
   name: odoo-service
 spec:
   type: NodePort
